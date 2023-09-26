@@ -1,8 +1,9 @@
 import express from "express";
-import { fetchUsers } from "../controllers/user.js";
 
 const router = express.Router()
 
-router.get('/', fetchUsers)
+router.get('/', (req, res) => {
+    res.send("Welcome to the server!")
+})
 
 export default router

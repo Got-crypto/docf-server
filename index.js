@@ -4,14 +4,15 @@ import dotenv from "dotenv"
 import express from 'express'
 import mongoose from 'mongoose'
 
+import homeRoute from "./routes/index.js"
 import userModel from './routes/user.js'
 
 dotenv.config()
 
-
 const app = express()
 
-app.use('/', userModel)
+app.use('/', homeRoute)
+app.use('/user', userModel)
 
 app.use(cors())
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}))
