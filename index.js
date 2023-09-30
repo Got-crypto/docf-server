@@ -1,5 +1,4 @@
 import bodyParser from 'body-parser'
-import cors from 'cors'
 import dotenv from "dotenv"
 import express from 'express'
 import mongoose from 'mongoose'
@@ -15,9 +14,13 @@ const app = express()
 app.use('/', homeRoute)
 app.use('/user', userModel)
 
-app.use('/auth', registration)
+app.use('/register', registration)
 
-app.use(cors())
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+
+    next()
+})
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}))
 
 const PORT = process.env.PORT || 5000
