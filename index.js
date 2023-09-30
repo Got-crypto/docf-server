@@ -5,6 +5,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 
 import homeRoute from "./routes/index.js"
+import registration from './routes/registration.js'
 import userModel from './routes/user.js'
 
 dotenv.config()
@@ -13,6 +14,8 @@ const app = express()
 
 app.use('/', homeRoute)
 app.use('/user', userModel)
+
+app.use('/auth', registration)
 
 app.use(cors())
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}))
